@@ -1,0 +1,23 @@
+{
+  "name": "puzzle-4x4",
+  "version": "1.0.0",
+  "description": "",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/erandasathsara/puzzle.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/erandasathsara/puzzle/issues"
+  },
+  "homepage": "https://github.com/erandasathsara/puzzle#readme",
+  "dependencies": {
+    "firebase": "^8.10.1"
+  }
+}
