@@ -26,11 +26,10 @@ const db = firebase.firestore();
 // }
 
 // added test data to check the db connection
-function addTestData() {
+function addTestData(geropname,time) {
     db.collection("users").add({
-        first: "Ada",
-        last: "Lovelace",
-        born: 1815
+        group: geropname,
+        timecount: time
     })
         .then((docRef) => {
         console.log("Document written with ID: ", docRef.id);

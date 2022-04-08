@@ -61,14 +61,14 @@
 
 
     </div>
-  
+
 </body>
 <div class="container" style="padding-top: 2%;">
     <div class="alert alert-success" role="alert" id="g" style="display:none;">
         <div class="container">
             <div class="row">
                 <div class="col">
-                    <h3 class="alert-heading">Well done!</h3>
+                    <h3 class="alert-heading">INSTRUCTIONS</h3>
 
                 </div>
                 <div class="col">
@@ -81,15 +81,34 @@
         </div>
 
         <p>
-        <h4>1) you successfully read this important alert message.</h4>
+        <h5>The reference picture would be displayed on the left side of the screen. The participants can use it when
+            solving the puzzle.</h5>
         </p>
         <p>
-        <h4>2) This example text is going to run a bit longer.</h4>
+        <h5>The picture puzzle consists of 16 tiles.</h5>
+        </p>
+        <p>
+        <h5>One of the tiles is a space.</h5>
+        </p>
+        <p>
+        <h5>Arrow keys should be used when moving the tiles around.</h5>
         </p>
 
         <p>
-        <h4>3)so that you can see how spacing within an alert works with this kind of content.</h4>
+        <h5>If you want to move a tile down, you should use the down arrow key.</h5>
         </p>
+
+
+        <p>
+        <h5>Likewise the left, right and the up arrow keys should be used to move a tile to the left, to the right
+            and upwards, respectively.</h5>
+        </p>
+        <p>
+
+        <h5>Likewise the left, right and the up arrow keys should be used to move a tile to the left, to the right
+            and upwards, respectively.</h5>
+        </p>
+
         <hr>
         <p class="mb-0">
         <h3>Good Luck!.</h3>
@@ -167,7 +186,7 @@
     }
     while (n < 15)
 
-    //l = [0, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1];
+    // l = [0, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1];
 
     function drawPuzzle() {
         for (i = 0; i < 16; i++) {
@@ -240,7 +259,8 @@
         if (a == 1) {
 
             alert('You Won!\nTime - ' + timeToString(elapsedTime));
-            writeGroupTime("test", timeToString(elapsedTime));
+            addTestData("testgroup", timeToString(elapsedTime));
+            //writeGroupTime("test", timeToString(elapsedTime));
             pause();
         }
     }
