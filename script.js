@@ -1,71 +1,108 @@
-// Convert time to a format of hours, minutes, seconds, and milliseconds
+/* Kristuff.WebUI.SideMenu */
+(function (window, undefined) {
+    'use strict';
+    // responsive pinnable sidemenu component
+    var sideMenu = function (el) {
+        var htmlSideMenu = el, htmlSideMenuPinTrigger = {}, htmlSideMenuPinTriggerImage = {}, htmlOverlay = {};
+        var init = function () {
+            htmlSideMenuPinTrigger = el.querySelector('.wui-side-menu-pin-trigger');
+            htmlSideMenuPinTriggerImage = htmlSideMenuPinTrigger.querySelector('i.fa');
+            htmlOverlay = document.querySelector('.wui-overlay');
+            Array.prototype.forEach.call(document.querySelectorAll('.wui-side-menu-trigger'), function (elmt, i) {
+                elmt.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    toggleMenuState();
+                }, false);
+            });
+            htmlSideMenuPinTrigger.addEventListener('click', function (e) {
+                e.preventDefault();
+                toggleMenuPinState();
+            }, false);
+            htmlOverlay.addEventListener("click", function (e) {
+                htmlSideMenu.classList.remove('open');
+            }, false);
+            window.addEventListener("resize", checkIfNeedToCloseMenu, false);
+            checkIfNeedToCloseMenu();
+        };
+        var toggleMenuState = function () {
+            htmlSideMenu.classList.toggle('open');
+            menuStateChanged(htmlSideMenu, htmlSideMenu.classList.contains('open'));
+        };
+        var toggleMenuPinState = function () {
+            htmlSideMenu.classList.toggle('pinned');
+            htmlSideMenuPinTriggerImage.classList.toggle('fa-rotate-90');
+            if (htmlSideMenu.classList.contains('pinned') !== true) {
+                htmlSideMenu.classList.remove('open');
+            }
+            menuPinStateChanged(htmlSideMenu, htmlSideMenu.classList.contains('pinned'));
+        };
+        var checkIfNeedToCloseMenu = function () {
+            var width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+            if (width <= 767 && htmlSideMenu.classList.contains('open') === true) {
+                htmlSideMenu.classList.remove('open');
+                menuStateChanged(htmlSideMenu, htmlSideMenu.classList.contains('open'));
+            }
+            if (width > 767 && htmlSideMenu.classList.contains('pinned') === false) {
+                htmlSideMenu.classList.remove('open');
+                menuStateChanged(htmlSideMenu, htmlSideMenu.classList.contains('open'));
+            }
+        };
+        var menuStateChanged = function (element, state) {
+            var evt = new CustomEvent('menuStateChanged', { detail: { open: state} });
+            element.dispatchEvent(evt);
+        };
+        var menuPinStateChanged = function (element, state) {
+            var evt = new CustomEvent('menuPinStateChanged', { detail: { pinned: state} });
+            element.dispatchEvent(evt);
+        };
+        init();
+        return {
+            htmlElement: htmlSideMenu,
+            toggleMenuState: toggleMenuState,
+            toggleMenuPinState: toggleMenuPinState
+        };
+    };
+    
+    window.SideMenu = sideMenu;
+})(window);
 
-function timeToString(time) {
-  let diffInHrs = time / 3600000;
-  let hh = Math.floor(diffInHrs);
 
-  let diffInMin = (diffInHrs - hh) * 60;
-  let mm = Math.floor(diffInMin);
+var documentReady = function (fn) {
+  if (document.readyState != 'loading') {
+    fn();
+  } else {
+    document.addEventListener('DOMContentLoaded', fn);
+  }
+};
 
-  let diffInSec = (diffInMin - mm) * 60;
-  let ss = Math.floor(diffInSec);
+documentReady(function() {
+  var sample = new SideMenu(document.querySelector('.wui-side-menu'))
+});
 
-  let diffInMs = (diffInSec - ss) * 100;
-  let ms = Math.floor(diffInMs);
+//slider
+let slideIndex = 1;
+showSlides(slideIndex);
 
-  let formattedMM = mm.toString().padStart(2, "0");
-  let formattedSS = ss.toString().padStart(2, "0");
-  let formattedMS = ms.toString().padStart(2, "0");
-
-  return `${formattedMM}:${formattedSS}:${formattedMS}`;
+function plusSlides(n) {
+  showSlides(slideIndex += n);
 }
 
-// Declare variables to use in our functions below
-
-let startTime;
-let elapsedTime = 0;
-let timerInterval;
-
-// Create function to modify innerHTML
-
-function print(txt) {
-  document.getElementById("display").innerHTML = txt;
+function currentSlide(n) {
+  showSlides(slideIndex = n);
 }
 
-// Create "start", "pause" and "reset" functions
-
-function start() {
-  startTime = Date.now() - elapsedTime;
-  timerInterval = setInterval(function printTime() {
-    elapsedTime = Date.now() - startTime;
-    print(timeToString(elapsedTime));
-  }, 10);
-  showButton("PAUSE");
+function showSlides(n) {
+  let i;
+  let slides = document.getElementsByClassName("mySlides");
+  let dots = document.getElementsByClassName("dot");
+  if (n > slides.length) {slideIndex = 1}    
+  if (n < 1) {slideIndex = slides.length}
+  for (i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";  
+  }
+  for (i = 0; i < dots.length; i++) {
+    dots[i].className = dots[i].className.replace(" active", "");
+  }
+  slides[slideIndex-1].style.display = "block";  
+  dots[slideIndex-1].className += " active";
 }
-
-function pause() {
-  clearInterval(timerInterval);
-  showButton("PLAY");
-}
-
-function reset() {
-  clearInterval(timerInterval);
-  print("00:00:00");
-  elapsedTime = 0;
-  showButton("PLAY");
-}
-
-// Create function to display buttons
-
-function showButton(buttonKey) {
-  const buttonToShow = buttonKey === "PLAY" ? playButton : pauseButton;
-  const buttonToHide = buttonKey === "PLAY" ? pauseButton : playButton;
-  buttonToShow.style.display = "block";
-  buttonToHide.style.display = "none";
-}
-// Create event listeners
-
-let playButton = document.getElementById("playButton");
-let pauseButton = document.getElementById("pauseButton");
-let resetButton = document.getElementById("resetButton");
-

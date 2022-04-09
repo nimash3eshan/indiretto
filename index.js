@@ -27,7 +27,7 @@ const db = firebase.firestore();
 
 // added test data to check the db connection
 function addTestData(geropname,time) {
-    db.collection("users").add({
+    db.collection("puzzle").add({
         group: geropname,
         timecount: time
     })
