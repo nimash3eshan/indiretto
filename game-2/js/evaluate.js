@@ -27,7 +27,7 @@
 
  const db = getFirestore();
 
-var teamName = "Team Krish";
+var teamName = localStorage.getItem("group");
 var answers = JSON.parse(localStorage.getItem("my_answers")); //get them back
 var timeDur = localStorage.getItem("totalSecs");
 var answers = [...new Set(answers)];
@@ -53,7 +53,6 @@ for(let i = 0; i<correctAnswers.length; i++){
 
 finalMark = (1/timeDur * mark*10)+mark;
 //for 10 mins, range 0 - 1.0083 - 1 - 120
-document.getElementsByTagName("div")[0].innerHTML = "Answers(no space, lowercase):"+answers+"<br>time:"+timeDur+"<br>Marks:"+finalMark;
 console.log(mark);
 sendData();
 async function sendData(){
