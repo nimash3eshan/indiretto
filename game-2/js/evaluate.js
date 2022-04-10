@@ -61,7 +61,9 @@ async function sendData(){
     const docRef = await addDoc(
         ref, {
             TeamName: teamName,
-            Marks:finalMark
+            Marks:finalMark,
+            TimeDuration:timeDur,
+            CorrectAnswers:correctAnswers
         }
     )
     .then(()=>{
