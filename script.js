@@ -1,3 +1,7 @@
+var teamName = localStorage.getItem("group");
+if(!teamName){
+  window.location.replace("./index.html"); 
+}
 /* Kristuff.WebUI.SideMenu */
 (function (window, undefined) {
     'use strict';
