@@ -79,12 +79,43 @@
     </style>
 </head>
 <body>
+    <div class="loading">
+           
+        <span><i></i><i></i></span>
+    </div>
 
-        <div class="loading">
-            <p>Please wait</p>
-            <span><i></i><i></i></span>
-        </div>
- 
-   <script type="module" src="./js/evaluate.js"></script>
+
+    <div style=" margin: 5% 35%;
+    cursor: pointer;text-align: center;padding-top: 7%;">
+
+    <h1>Enter the code:</h1>
+    <input id="levelCode" type="text" style="width: 100%; height: 150%; font-size: 2vw;">
+    <button style="
+    margin: 5%;
+    cursor: pointer;
+    outline: 0;
+    color: #fff;
+    background-color: #fd9d0d;
+    border-color: #fdc50d;
+    display: inline-block;
+    font-weight: 400;
+    line-height: 1.5;
+    text-align: center;
+    border: 1px solid transparent;
+    padding: 6px 12px;
+    font-size: 16px;
+    border-radius: .25rem;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    
+" onclick="levelTwo();">Submit</button>
+  </div>
+<script>
+  function levelTwo(){
+    var input = document.getElementById("levelCode").value;
+    if(input == "ind22rotaract") window.location.replace("./Level 2.html");
+    else alert("Incorrect code!!");
+  }
+  </script>
+  
 </body>
 </html>

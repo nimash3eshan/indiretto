@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap');
+
 body{
     background-image: url("../img/bg.jpg");
     background-position:center;
@@ -26,16 +28,25 @@ canvas{
 }
 
 p{
-    font-size: 25px;
-    padding: 80px 200px;
-    background-color: rgba(0, 0, 0, 0.425);
-    color: wheat;
+  font-family: 'Architects Daughter', cursive;
+  font-weight: 800;
+    font-size: 20px;
+    margin: 20px 100px;
+    padding: 50px 100px;
+    background-color: rgba(0, 0, 0, 0.692);
+    color: rgb(255, 255, 255);
     border-radius: 50px;
+    text-align: center;
+}
+
+.logo{
+  width: 500px;
 }
 
 @media (max-width: 768px) {
     
     p{
+      
         padding: 10px 20px;
         border-radius: 10px;
     }
