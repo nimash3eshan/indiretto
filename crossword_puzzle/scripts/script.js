@@ -583,7 +583,7 @@ function showHints() {
 function showNextBtn() {
     showEle(document.getElementById("next-btn"));
     document.getElementById("next-btn").onclick = function () {
-        window.location.href = "../../../git repo eranda/Level 5.html";
+        window.location.replace("../Level 5.html");
     };
 }
 
