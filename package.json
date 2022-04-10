@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/erandasathsara/puzzle#readme",
   "dependencies": {
-    "firebase": "^8.10.1"
+    "firebase": "^8.10.1",
+    "kahoot.js-api": "^2.4.0"
   }
 }
