@@ -161,7 +161,7 @@ input {
   <div class="modal-content">
     <span class="close">&times;</span>
     <h1>Enter the code:</h1>
-    <input type="text">
+    <input id="levelCode" type="text">
     <button style="
     margin: 5% 45%;
     cursor: pointer;
@@ -179,7 +179,7 @@ input {
     border-radius: .25rem;
     transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
     
-">Submit</button>
+" onclick="levelTwo();">Submit</button>
   </div>
 
 </div>
@@ -205,11 +205,17 @@ span.onclick = function() {
   modal.style.display = "none";
 }
 
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
+// // When the user clicks anywhere outside of the modal, close it
+// window.onclick = function(event) {
+//   if (event.target == modal) {
+//     modal.style.display = "none";
+//   }
+// }
+
+function levelTwo(){
+  var input = document.getElementById("levelCode").value;
+  if(input == "ind22rotaract") window.location.replace("./Level 2.html");
+  else alert("Incorrect code!!");
 }
 </script>
 <div class="wui-overlay"></div>
