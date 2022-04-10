@@ -1,0 +1,178 @@
+/* side menu */
+.wui-side-menu {
+  position:fixed;
+  top:0;
+  left:0;
+  width:220px;
+  height:100%;
+  backface-visibility:hidden;
+  z-index:3;
+  -webkit-transform: translateX(-100%);
+  transform: translateX(-100%);  
+  -webkit-transition: webkit-transform 220ms ease-in-out;
+  transition: transform 220ms ease-in-out;
+}
+.wui-side-menu.open {-webkit-transform: translateX(0);transform: translateX(0);} 
+.wui-side-menu.open ~ .content .side-menu-trigger {display:none;}
+.wui-side-menu.open {box-shadow: 2px 0 16px 0 rgba(0,0,0,0.3);}
+.wui-side-menu .header, 
+.wui-content-header {vertical-align:baseline;line-height:50px;}
+.wui-side-menu-pin-trigger, 
+    .wui-side-menu-trigger {width:50px;height:50px;text-align:center;display: inline-block;font-size:18px;line-height: 50px;}
+
+.wui-side-menu .wui-side-menu-pin-trigger    {display:none;float: right;}
+.wui-side-menu .wui-side-menu-pin-trigger i  {-webkit-transition:all 0.22s ease-out;-moz-transition:all 0.22s ease-out;
+                                                      -o-transition:all 0.22s ease-out;     transition:all 0.22s ease-out;}
+.wui-side-menu .wui-side-menu-items {overflow-y:auto;height: calc(100% - 50px);}
+.wui-side-menu .wui-side-menu-item {
+   display:block;
+   width:100%;
+   padding:15px 12px ;
+   border-left:5px solid transparent;
+}
+.wui-side-menu .wui-side-menu-item {height:50px}
+.wui-side-menu .wui-side-menu-item i.box-ico {margin-right:4px;}
+
+/* overlay */
+.wui-overlay {position:absolute;top:0;left:0;right:0;bottom:0;z-index:2;background-color: rgba(0, 0, 0, 0.1);opacity:0.5;display:none;}
+.wui-side-menu.open ~ .wui-overlay, .wui-overlay.activex {display:block;} 
+
+/* content */
+.wui-content {
+    color: #fff;
+    background-image: url(./images/back.jpg);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    z-index:1;position:absolute;top:0;right:0;bottom:0;left:0;
+             -webkit-transition:all 0.22s ease-out;-moz-transition:all 0.22s ease-out;
+             -o-transition:all 0.22s ease-out;transition:all 0.22s ease-out;padding:0 10px;}
+.wui-content .wui-side-menu-trigger {margin-left:-10px;}
+@media only screen and (min-width:768px){
+    .wui-side-menu .wui-side-menu-pin-trigger {display:inline-block;} 
+    .wui-side-menu.open {box-shadow: initial;}
+    .wui-side-menu.open ~ .wui-overlay {display:none;} 
+    .wui-side-menu.open ~ .wui-content .wui-side-menu-trigger {display:none;} 
+    .wui-side-menu.open:not(.pinned) ~ .wui-overlay {display:block;}
+    .wui-side-menu.open:not(.pinned) {box-shadow: 2px 0 16px 0 rgba(0,0,0,0.3);}
+    .wui-side-menu.open.pinned ~ .wui-content {left:220px;}
+}
+ul.wui-side-menu-items {list-style: none;padding:0}
+
+.wui-side-menu {background-color: #292e34;color:rgb(255, 255, 255);}
+.wui-side-menu .wui-side-menu-trigger:hover,
+.wui-side-menu-item:hover,
+.wui-side-menu-pin-trigger:hover
+    {color: #fff;background-color: #383f45;}
+
+.wui-side-menu a 
+ {color:#ccc;text-decoration:none}
+.wui-side-menu .wui-side-menu-item.activex
+    {border-left-color: #158439; color:#158439}
+.wui-content a {color:rgb(255, 255, 255);}
+
+
+/* demo */
+body {margin:0; font-family:'arial';font-weight:100;}
+*, *:after, *:before {-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;}
+#events {background-color:#ccc;}
+
+.wui-side-menu li img{
+   width: 200px;
+   transform: translateX(10px);
+}
+.wui-content img{
+    width: 500px;
+}
+.wui-content .mainimg{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/*image carousel*/
+
+.slideshow-container {
+  max-width: 500px;
+  position: relative;
+  margin: auto;
+}
+
+/* Next & previous buttons */
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  padding: 16px;
+  margin-top: -22px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+}
+
+/* Position the "next button" to the right */
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover, .next:hover {
+  background-color: rgba(0,0,0,0.8);
+}
+
+/* Caption text */
+.text {
+  color: #f2f2f2;
+  font-size: 15px;
+  padding: 8px 12px;
+  position: absolute;
+  bottom: 8px;
+  width: 100%;
+  text-align: center;
+}
+
+/* Number text (1/3 etc) */
+.numbertext {
+  color: #f2f2f2;
+  font-size: 12px;
+  padding: 8px 12px;
+  position: absolute;
+  top: 0;
+}
+
+/* The dots/bullets/indicators */
+.dot {
+  cursor: pointer;
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+.active, .dot:hover {
+  background-color: #717171;
+}
+
+/* Fading animation */
+.fade {
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@keyframes fade {
+  from {opacity: .4} 
+  to {opacity: 1}
+}
+
+/* On smaller screens, decrease text size */
+@media only screen and (max-width: 300px) {
+  .prev, .next,.text {font-size: 11px}
+}

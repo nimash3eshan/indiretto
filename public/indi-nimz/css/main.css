@@ -1,0 +1,148 @@
+@import url("https://fonts.googleapis.com/css2?family=Exo+2:wght@200;300;400;500;600;700&display=swap");
+body {
+	font-family: "Exo 2", sans-serif;
+	color: rgb(255, 255, 255);
+	background-image: url("../images/bg.jpg"),linear-gradient(rgba(0, 0, 0, 0.507),rgba(0, 0, 0, 0.644));
+	backdrop-filter: blur(1px);
+	background-blend-mode:darken;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	}
+a {
+	text-decoration: none;
+}
+
+.navbar {
+	background-color: rgba(1, 29, 17, 0.815);
+}
+
+.scorelist{
+	background-color: rgba(0, 0, 0, 0.671);
+	border-radius: 15px;
+	padding: 0px 10px 10px 10px;
+}
+
+.table{
+	color: white;
+}
+
+tbody tr:hover{
+	cursor: pointer;
+	transition: 0.3s;
+	background-color: rgba(2, 49, 10, 0.76);
+}
+
+.nav-link {
+	color: rgb(255, 255, 255);
+	padding-bottom: 0;
+	font-size: 1.2rem;
+}
+
+.nav-link:hover{
+	color: orangered;
+}
+
+.nav-item {
+	margin-left: 40px;
+}
+
+.login-btn {
+	border: 1px solid black;
+	border-radius: 3px;
+	padding: 0.3rem 1.5rem;
+	color: black;
+	font-size: 1.2rem;
+}
+
+.login-btn:hover {
+	background-color: whitesmoke;
+}
+
+.landing-section {
+	height: 560px;
+	display: flex;
+	align-items: center;
+}
+
+.landing-content {
+	width: 90%;
+	margin: 0 auto;
+	display: grid;
+	grid-template-columns: 70% 30%;
+	align-items: center;
+}
+
+.landing-text {
+	width: 80%;
+	margin-right: auto;
+}
+
+.landing-img {
+	width: 100%;
+}
+
+.countdown-section {
+	background-color: #ff220c;
+	padding: 50px 0;
+}
+
+.countdown-content {
+	width: 90%;
+	margin: 0 auto;
+	display: flex;
+	align-items: center;
+
+	justify-content: space-between;
+}
+
+.time-elements {
+	display: flex;
+	flex-direction: row;
+	text-align: center;
+}
+.time-element {
+	margin-left: 50px;
+}
+
+.time-number {
+	font-size: 4rem;
+	font-weight: lighter;
+}
+
+#footer {
+	padding: 30px 0;
+}
+
+.footer-content {
+	color: black;
+	text-align: center;
+}
+
+.how-social i {
+	color: white;
+	margin: 0 10px;
+}
+
+@media (max-width: 768px) {
+	.landing-content {
+		width: 100%;
+		display: flex;
+		flex-direction: column-reverse;
+	}
+	.countdown-content {
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+	}
+
+	.landing-text {
+		width: 100%;
+	}
+
+	.landing-img {
+		display: block;
+		width: 70%;
+		margin: 0 auto 50px;
+	}
+}
