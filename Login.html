@@ -164,6 +164,11 @@
         </div>
     </div>
     <script>
+        var teamName = localStorage.getItem("group");
+        if(teamName){
+        window.location.replace("./Level 1.html"); 
+        }
+
         function readData() {
             var group = document.getElementById("teamname").value;            
             var password = document.getElementById("password").value;
