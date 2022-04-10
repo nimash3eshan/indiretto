@@ -63,7 +63,8 @@ async function sendData(){
             TeamName: teamName,
             Marks:finalMark,
             TimeDuration:timeDur,
-            CorrectAnswers:correctAnswers
+            CorrectCount:mark,
+            Answers: answers
         }
     )
     .then(()=>{
