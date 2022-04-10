@@ -90,10 +90,15 @@ body {margin:0; font-family:'arial';font-weight:100;}
     justify-content: center;
 }
 
+.mainimg img{
+  width: 200px;
+  padding-bottom: 20px;
+}
+
 /*image carousel*/
 
 .slideshow-container {
-  max-width: 500px;
+  max-width: 117vh;
   position: relative;
   margin: auto;
 }
