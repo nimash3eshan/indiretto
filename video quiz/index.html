@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Indiretto - Riddle</title>
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@600&family=Exo:ital,wght@1,600&display=swap" rel="stylesheet">
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div id="container">
+        <!--    Start Section     -->
+        <div id="start">Start Riddle</div>
+
+        <!--    Guide Section    -->
+        <div id="guide">
+            <h2>Riddle Guide</h2>
+            <h4>1. You Have Only 2 minutes For Each Questions.</h4>
+            <h4>3. Once You Select Your Answer.<u> It Can't Be Undone</u></h4>
+            <h4>4. You'll Get Points On The Basic Of Your Correct Answers.</h4>
+            <h4>5. You Can't Exit From The Quiz While You Are Playing.</h4>
+            <div id="button">
+                <button id="exit">Exit</button>
+                <button id="continue">Continue</button>
+            </div>
+        </div>
+
+        <!--    Quiz Section    -->
+        <div id="quiz">
+            <div id="quiz_header">
+                <h5>Riddle Quiz</h5>
+                <div id="timer">
+                    <h6>Time Left</h6>
+                    <h6 id="time">00</h6>
+                </div>
+            </div>
+
+            <!--     Quiz Questions  -->
+
+            <div id="question">
+                <h2 id="questionNo"></h2>
+                <h2 id="questionText"></h2>
+            </div>
+
+            <!--       Quiz Choices   -->
+
+            <div id="optionList">
+                <h4 class="choice_que" id="option1"></h4>
+                <h4 class="choice_que" id="option2"></h4>
+                <h4 class="choice_que" id="option3"></h4>
+            </div>
+
+            
+            <iframe id="video" frameborder="0" type="text/html" src="" allowfullscreen > </iframe> 
+            
+
+            <!--  Answers Section-->
+
+            <div id="answersSection">
+                <h3 id="total_correct">3 Of 10 Questions</h3>
+                <h3 id="next_question">Next</h3>
+            </div>
+        </div>
+        <!--   Result Section  -->
+        <div id="result">
+            <img src="./css/logo.png" alt="">
+            <h6>You Are Completed The Riddle</h6>
+            <h6 id="points">You Got 4 Out Of 10</h6>
+            <button id="quit">Quit Riddle</button>
+        </div>
+    </div>
+    <script src="./js/questions.js"></script>
+    <script src="./js/script.js"></script>
+    <script type="module" src="./js/firestore.js"></script>
+</body>
+
+</html>
