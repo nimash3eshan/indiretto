@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="icon" type="image/png" href="img/logo.png"/>
+    <title>Indiretto 2022 - Crossword Puzzle</title>
+    <!-- CSS only -->
+    <link rel="stylesheet" href="styles/bootstrap.min.css">
+    <link rel="stylesheet" href="styles/jquery-confirm.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!--    main style sheet-->
+    <link rel="stylesheet" href="styles/style.css">
+
+
+</head>
+<body>
+<div class="stopwatch">
+    <div class="circle">
+        <span class="time" id="display">00:00:00</span>
+    </div>
+</div>
+<section class="section-1">
+    <div class="puzzle-container">
+        <div id="correct" class="correct"></div>
+        <div class="level level-1">
+            <input id="sq1-1" type="text" class="black-square" disabled>
+            <input id="sq1-2" type="text" class="black-square" disabled>
+            <input id="sq1-3" type="text" class="black-square" disabled>
+            <input id="sq1-4" type="text" class="black-square" disabled>
+            <input id="sq1-5" type="text" class="black-square" disabled>
+            <input id="sq1-6" type="text" class="black-square" disabled>
+            <div class="cont">
+                <input id="sq1-7" type="text" class="white-square" maxlength="1" required>
+                <span class="num">1</span>
+            </div>
+            <input id="sq1-8" type="text" class="black-square" disabled>
+            <input id="sq1-9" type="text" class="black-square" disabled>
+            <input id="sq1-10" type="text" class="black-square" disabled>
+            <input id="sq1-11" type="text" class="black-square" disabled>
+            <input id="sq1-12" type="text" class="black-square" disabled>
+            <input id="sq1-13" type="text" class="black-square" disabled>
+            <input id="sq1-14" type="text" class="black-square" disabled>
+            <input id="sq1-15" type="text" class="black-square" disabled>
+            <input id="sq1-16" type="text" class="black-square" disabled>
+            <input id="sq1-17" type="text" class="black-square" disabled>
+        </div>
+        <div class="level level-2">
+            <input id="sq2-1" type="text" class="black-square" disabled>
+            <input id="sq2-2" type="text" class="black-square" disabled>
+            <div class="cont">
+                <input id="sq2-3" type="text" class="white-square" maxlength="1" required>
+                <span class="num">2</span>
+            </div>
+            <input id="sq2-4" type="text" class="white-square" maxlength="1" required>
+            <input id="sq2-5" type="text" class="white-square" maxlength="1" required>
+            <input id="sq2-6" type="text" class="white-square" maxlength="1" required>
+            <input id="sq2-7" type="text" class="white-square" maxlength="1" required>
+            <input id="sq2-8" type="text" class="white-square" maxlength="1" required>
+            <input id="sq2-9" type="text" class="white-square" maxlength="1" required>
+            <input id="sq2-10" type="text" class="white-square" maxlength="1" required>
+            <div class="cont">
+                <input id="sq2-11" type="text" class="white-square" maxlength="1" required>
+                <span class="num">3</span>
+            </div>
+            <input id="sq2-12" type="text" class="white-square" maxlength="1" required>
+            <input id="sq2-13" type="text" class="white-square" maxlength="1" required>
+            <input id="sq2-14" type="text" class="black-square" disabled>
+            <input id="sq2-15" type="text" class="black-square" disabled>
+            <input id="sq2-16" type="text" class="black-square" disabled>
+            <input id="sq2-17" type="text" class="black-square" disabled>
+        </div>
+        <div class="level level-3">
+            <input id="sq3-1" type="text" class="black-square" disabled>
+            <div class="cont">
+                <input id="sq3-2" type="text" class="white-square" maxlength="1" required>
+                <span class="num">4</span>
+            </div>
+            <input id="sq3-3" type="text" class="black-square" disabled>
+            <input id="sq3-4" type="text" class="black-square" disabled>
+            <input id="sq3-5" type="text" class="black-square" disabled>
+            <input id="sq3-6" type="text" class="black-square" disabled>
+            <input id="sq3-7" type="text" class="white-square" maxlength="1" required>
+            <input id="sq3-8" type="text" class="black-square" disabled>
+            <input id="sq3-9" type="text" class="black-square" disabled>
+            <input id="sq3-10" type="text" class="black-square" disabled>
+            <input id="sq3-11" type="text" class="white-square" maxlength="1" required>
+            <input id="sq3-12" type="text" class="black-square" disabled>
+            <input id="sq3-13" type="text" class="black-square" disabled>
+            <div class="cont">
+                <input id="sq3-14" type="text" class="white-square" maxlength="1" required>
+                <span class="num">5</span>
+            </div>
+            <input id="sq3-15" type="text" class="black-square" disabled>
+            <input id="sq3-16" type="text" class="black-square" disabled>
+            <input id="sq3-17" type="text" class="black-square" disabled>
+        </div>
+        <div class="level level-4">
+            <input id="sq4-1" type="text" class="black-square" disabled>
+            <input id="sq4-2" type="text" class="white-square" maxlength="1" required>
+            <input id="sq4-3" type="text" class="black-square" disabled>
+            <input id="sq4-4" type="text" class="black-square" disabled>
+            <input id="sq4-5" type="text" class="black-square" disabled>
+            <input id="sq4-6" type="text" class="black-square" disabled>
+            <input id="sq4-7" type="text" class="white-square" maxlength="1" required>
+            <input id="sq4-8" type="text" class="black-square" disabled>
+            <input id="sq4-9" type="text" class="black-square" disabled>
+            <input id="sq4-10" type="text" class="black-square" disabled>
+            <input id="sq4-11" type="text" class="white-square" maxlength="1" required>
+            <input id="sq4-12" type="text" class="black-square" disabled>
+            <input id="sq4-13" type="text" class="black-square" disabled>
+            <input id="sq4-14" type="text" class="white-square" maxlength="1" required>
+            <input id="sq4-15" type="text" class="black-square" disabled>
+            <input id="sq4-16" type="text" class="black-square" disabled>
+            <input id="sq4-17" type="text" class="black-square" disabled>
+        </div>
+        <div class="level level-5">
+            <div class="cont">
+                <input id="sq5-1" type="text" class="white-square" maxlength="1" required>
+                <span class="num">6</span>
+            </div>
+            <input id="sq5-2" type="text" class="white-square" maxlength="1" required>
+            <input id="sq5-3" type="text" class="white-square" maxlength="1" required>
+            <input id="sq5-4" type="text" class="white-square" maxlength="1" required>
+            <input id="sq5-5" type="text" class="white-square" maxlength="1" required>
+            <input id="sq5-6" type="text" class="white-square" maxlength="1" required>
+            <input id="sq5-7" type="text" class="white-square given" maxlength="1" value="n" disabled>
+            <input id="sq5-8" type="text" class="white-square" maxlength="1" required>
+            <input id="sq5-9" type="text" class="black-square" disabled>
+            <input id="sq5-10" type="text" class="black-square" disabled>
+            <input id="sq5-11" type="text" class="white-square" maxlength="1" required>
+            <input id="sq5-12" type="text" class="black-square" disabled>
+            <input id="sq5-13" type="text" class="black-square" disabled>
+            <input id="sq5-14" type="text" class="white-square" maxlength="1" required>
+            <input id="sq5-15" type="text" class="black-square" disabled>
+            <input id="sq5-16" type="text" class="black-square" disabled>
+            <input id="sq5-17" type="text" class="black-square" disabled>
+        </div>
+        <div class="level level-6">
+            <input id="sq6-1" type="text" class="black-square" disabled>
+            <input id="sq6-2" type="text" class="white-square" maxlength="1" required>
+            <input id="sq6-3" type="text" class="black-square" disabled>
+            <input id="sq6-4" type="text" class="black-square" disabled>
+            <input id="sq6-5" type="text" class="black-square" disabled>
+            <input id="sq6-6" type="text" class="black-square" disabled>
+            <input id="sq6-7" type="text" class="white-square" maxlength="1" required>
+            <input id="sq6-8" type="text" class="black-square" disabled>
+            <input id="sq6-9" type="text" class="black-square" disabled>
+            <input id="sq6-10" type="text" class="black-square" disabled>
+            <input id="sq6-11" type="text" class="white-square" maxlength="1" required>
+            <input id="sq6-12" type="text" class="black-square" disabled>
+            <div class="cont">
+                <input id="sq6-13" type="text" class="white-square" maxlength="1" required>
+                <span class="num">7</span>
+            </div>
+            <input id="sq6-14" type="text" class="white-square" maxlength="1" required>
+            <input id="sq6-15" type="text" class="white-square" maxlength="1" required>
+            <input id="sq6-16" type="text" class="white-square" maxlength="1" required>
+            <input id="sq6-17" type="text" class="white-square" maxlength="1" required>
+        </div>
+        <div class="level level-7">
+            <input id="sq7-1" type="text" class="black-square" disabled>
+            <input id="sq7-2" type="text" class="white-square" maxlength="1" required>
+            <input id="sq7-3" type="text" class="black-square" disabled>
+            <div class="cont">
+                <input id="sq7-4" type="text" class="white-square" maxlength="1" required>
+                <span class="num">8</span>
+            </div>
+            <input id="sq7-5" type="text" class="black-square" disabled>
+            <input id="sq7-6" type="text" class="black-square" disabled>
+            <input id="sq7-7" type="text" class="white-square" maxlength="1" required>
+            <input id="sq7-8" type="text" class="black-square" disabled>
+            <input id="sq7-9" type="text" class="black-square" disabled>
+            <input id="sq7-10" type="text" class="black-square" disabled>
+            <input id="sq7-11" type="text" class="white-square" maxlength="1" required>
+            <input id="sq7-12" type="text" class="black-square" disabled>
+            <input id="sq7-13" type="text" class="black-square" disabled>
+            <input id="sq7-14" type="text" class="white-square given" maxlength="1" value="a" disabled>
+            <input id="sq7-15" type="text" class="black-square" disabled>
+            <input id="sq7-16" type="text" class="black-square" disabled>
+            <input id="sq7-17" type="text" class="black-square" disabled>
+        </div>
+        <div class="level level-8">
+            <input id="sq8-1" type="text" class="black-square" disabled>
+            <div class="cont">
+                <input id="sq8-2" type="text" class="white-square" maxlength="1" required>
+                <span class="num">9</span>
+            </div>
+            <input id="sq8-3" type="text" class="white-square" maxlength="1" required>
+            <input id="sq8-4" type="text" class="white-square" maxlength="1" required>
+            <input id="sq8-5" type="text" class="white-square" maxlength="1" required>
+            <input id="sq8-6" type="text" class="white-square" maxlength="1" required>
+            <input id="sq8-7" type="text" class="white-square" maxlength="1" required>
+            <input id="sq8-8" type="text" class="black-square" disabled>
+            <div class="cont">
+                <input id="sq8-9" type="text" class="white-square" maxlength="1" required>
+                <span class="num">10</span>
+            </div>
+            <input id="sq8-10" type="text" class="white-square" maxlength="1" required>
+            <input id="sq8-11" type="text" class="white-square given" maxlength="1" value="o" disabled>
+            <input id="sq8-12" type="text" class="white-square" maxlength="1" required>
+            <input id="sq8-13" type="text" class="white-square" maxlength="1" required>
+            <input id="sq8-14" type="text" class="white-square" maxlength="1" required>
+            <input id="sq8-15" type="text" class="black-square" disabled>
+            <input id="sq8-16" type="text" class="black-square" disabled>
+            <input id="sq8-17" type="text" class="black-square" disabled>
+        </div>
+        <div class="level level-9">
+            <input id="sq9-1" type="text" class="black-square" disabled>
+            <input id="sq9-2" type="text" class="white-square" maxlength="1" required>
+            <input id="sq9-3" type="text" class="black-square" disabled>
+            <input id="sq9-4" type="text" class="white-square" maxlength="1" required>
+            <input id="sq9-5" type="text" class="black-square" disabled>
+            <input id="sq9-6" type="text" class="black-square" disabled>
+            <input id="sq9-7" type="text" class="black-square" disabled>
+            <input id="sq9-8" type="text" class="black-square" disabled>
+            <input id="sq9-9" type="text" class="black-square" disabled>
+            <input id="sq9-10" type="text" class="black-square" disabled>
+            <input id="sq9-11" type="text" class="white-square" maxlength="1" required>
+            <input id="sq9-12" type="text" class="black-square" disabled>
+            <input id="sq9-13" type="text" class="black-square" disabled>
+            <input id="sq9-14" type="text" class="black-square" disabled>
+            <input id="sq9-15" type="text" class="black-square" disabled>
+            <input id="sq9-16" type="text" class="black-square" disabled>
+            <input id="sq9-17" type="text" class="black-square" disabled>
+        </div>
+        <div class="level level-10">
+            <input id="sq10-1" type="text" class="black-square" disabled>
+            <input id="sq10-2" type="text" class="white-square" maxlength="1" required>
+            <input id="sq10-3" type="text" class="black-square" disabled>
+            <input id="sq10-4" type="text" class="white-square" maxlength="1" required>
+            <input id="sq10-5" type="text" class="black-square" disabled>
+            <input id="sq10-6" type="text" class="black-square" disabled>
+            <div class="cont">
+                <input id="sq10-7" type="text" class="white-square" maxlength="1" required>
+                <span class="num">11</span>
+            </div>
+            <input id="sq10-8" type="text" class="black-square" disabled>
+            <input id="sq10-9" type="text" class="black-square" disabled>
+            <input id="sq10-10" type="text" class="black-square" disabled>
+            <input id="sq10-11" type="text" class="black-square" disabled>
+            <input id="sq10-12" type="text" class="black-square" disabled>
+            <div class="cont">
+                <input id="sq10-13" type="text" class="white-square" maxlength="1" required>
+                <span class="num">12</span>
+            </div>
+            <input id="sq10-14" type="text" class="black-square" disabled>
+            <input id="sq10-15" type="text" class="black-square" disabled>
+            <div class="cont">
+                <input id="sq10-16" type="text" class="white-square" maxlength="1" required>
+                <span class="num">13</span>
+            </div>
+            <input id="sq10-17" type="text" class="black-square" disabled>
+        </div>
+        <div class="level level-11">
+            <input id="sq11-1" type="text" class="black-square" disabled>
+            <input id="sq11-2" type="text" class="white-square" maxlength="1" required>
+            <input id="sq11-3" type="text" class="black-square" disabled>
+            <input id="sq11-4" type="text" class="white-square" maxlength="1" required>
+            <input id="sq11-5" type="text" class="black-square" disabled>
+            <input id="sq11-6" type="text" class="black-square" disabled>
+            <input id="sq11-7" type="text" class="white-square" maxlength="1" required>
+            <input id="sq11-8" type="text" class="black-square" disabled>
+            <div class="cont">
+                <input id="sq11-9" type="text" class="white-square" maxlength="1" required>
+                <span class="num">14</span>
+            </div>
+            <input id="sq11-10" type="text" class="black-square" disabled>
+            <input id="sq11-11" type="text" class="black-square" disabled>
+            <div class="cont">
+                <input id="sq11-12" type="text" class="white-square given" maxlength="1" value="p" disabled>
+                <span class="num">15</span>
+            </div>
+            <input id="sq11-13" type="text" class="white-square" maxlength="1" required>
+            <input id="sq11-14" type="text" class="white-square" maxlength="1" required>
+            <input id="sq11-15" type="text" class="white-square" maxlength="1" required>
+            <input id="sq11-16" type="text" class="white-square" maxlength="1" required>
+            <input id="sq11-17" type="text" class="black-square" disabled>
+        </div>
+        <div class="level level-12">
+            <input id="sq12-1" type="text" class="black-square" disabled>
+            <input id="sq12-2" type="text" class="black-square" disabled>
+            <div class="cont">
+                <input id="sq12-3" type="text" class="white-square" maxlength="1" required>
+                <span class="num">16</span>
+            </div>
+            <input id="sq12-4" type="text" class="white-square" maxlength="1" required>
+            <input id="sq12-5" type="text" class="white-square given" maxlength="1" value="o" disabled>
+            <input id="sq12-6" type="text" class="white-square" maxlength="1" required>
+            <input id="sq12-7" type="text" class="white-square" maxlength="1" required>
+            <input id="sq12-8" type="text" class="black-square" disabled>
+            <input id="sq12-9" type="text" class="white-square" maxlength="1" required>
+            <input id="sq12-10" type="text" class="black-square" disabled>
+            <input id="sq12-11" type="text" class="black-square" disabled>
+            <input id="sq12-12" type="text" class="black-square" disabled>
+            <input id="sq12-13" type="text" class="white-square" maxlength="1" required>
+            <input id="sq12-14" type="text" class="black-square" disabled>
+            <input id="sq12-15" type="text" class="black-square" disabled>
+            <input id="sq12-16" type="text" class="white-square" maxlength="1" required>
+            <input id="sq12-17" type="text" class="black-square" disabled>
+        </div>
+        <div class="level level-13">
+            <input id="sq13-1" type="text" class="black-square" disabled>
+            <input id="sq13-2" type="text" class="black-square" disabled>
+            <input id="sq13-3" type="text" class="black-square" disabled>
+            <input id="sq13-4" type="text" class="white-square" maxlength="1" required>
+            <input id="sq13-5" type="text" class="black-square" disabled>
+            <input id="sq13-6" type="text" class="black-square" disabled>
+            <input id="sq13-7" type="text" class="white-square" maxlength="1" required>
+            <input id="sq13-8" type="text" class="black-square" disabled>
+            <div class="cont">
+                <input id="sq13-9" type="text" class="white-square" maxlength="1" required>
+                <span class="num">17</span>
+            </div>
+            <input id="sq13-10" type="text" class="white-square" maxlength="1" required>
+            <input id="sq13-11" type="text" class="white-square" maxlength="1" required>
+            <input id="sq13-12" type="text" class="white-square" maxlength="1" required>
+            <input id="sq13-13" type="text" class="white-square" maxlength="1" required>
+            <input id="sq13-14" type="text" class="white-square" maxlength="1" required>
+            <input id="sq13-15" type="text" class="black-square" disabled>
+            <input id="sq13-16" type="text" class="white-square" maxlength="1" required>
+            <input id="sq13-17" type="text" class="black-square" disabled>
+        </div>
+        <div class="level level-14">
+            <input id="sq14-1" type="text" class="black-square" disabled>
+            <input id="sq14-2" type="text" class="black-square" disabled>
+            <input id="sq14-3" type="text" class="black-square" disabled>
+            <input id="sq14-4" type="text" class="white-square" maxlength="1" required>
+            <input id="sq14-5" type="text" class="black-square" disabled>
+            <input id="sq14-6" type="text" class="black-square" disabled>
+            <input id="sq14-7" type="text" class="white-square" maxlength="1" required>
+            <input id="sq14-8" type="text" class="black-square" disabled>
+            <input id="sq14-9" type="text" class="white-square" maxlength="1" required>
+            <input id="sq14-10" type="text" class="black-square" disabled>
+            <input id="sq14-11" type="text" class="black-square" disabled>
+            <input id="sq14-12" type="text" class="black-square" disabled>
+            <input id="sq14-13" type="text" class="white-square" maxlength="1" required>
+            <input id="sq14-14" type="text" class="black-square" disabled>
+            <input id="sq14-15" type="text" class="black-square" disabled>
+            <input id="sq14-16" type="text" class="white-square" maxlength="1" required>
+            <input id="sq14-17" type="text" class="black-square" disabled>
+        </div>
+        <div class="level level-15">
+            <input id="sq15-1" type="text" class="black-square" disabled>
+            <input id="sq15-2" type="text" class="black-square" disabled>
+            <input id="sq15-3" type="text" class="black-square" disabled>
+            <input id="sq15-4" type="text" class="black-square" disabled>
+            <div class="cont">
+                <input id="sq15-5" type="text" class="white-square" maxlength="1" required>
+                <span class="num">18</span>
+            </div>
+            <input id="sq15-6" type="text" class="white-square" maxlength="1" required>
+            <input id="sq15-7" type="text" class="white-square" maxlength="1" required>
+            <input id="sq15-8" type="text" class="white-square given" maxlength="1" value="w" disabled>
+            <input id="sq15-9" type="text" class="white-square" maxlength="1" required>
+            <input id="sq15-10" type="text" class="white-square" maxlength="1" required>
+            <input id="sq15-11" type="text" class="white-square" maxlength="1" required>
+            <input id="sq15-12" type="text" class="white-square" maxlength="1" required>
+            <input id="sq15-13" type="text" class="white-square given" maxlength="1" value="d" disabled>
+            <input id="sq15-14" type="text" class="black-square" disabled>
+            <input id="sq15-15" type="text" class="black-square" disabled>
+            <input id="sq15-16" type="text" class="white-square" maxlength="1" required>
+            <input id="sq15-17" type="text" class="black-square" disabled>
+        </div>
+        <div class="level level-16">
+            <input id="sq16-1" type="text" class="black-square" disabled>
+            <input id="sq16-2" type="text" class="black-square" disabled>
+            <input id="sq16-3" type="text" class="black-square" disabled>
+            <input id="sq16-4" type="text" class="black-square" disabled>
+            <input id="sq16-5" type="text" class="black-square" disabled>
+            <input id="sq16-6" type="text" class="black-square" disabled>
+            <input id="sq16-7" type="text" class="white-square" maxlength="1" required>
+            <input id="sq16-8" type="text" class="black-square" disabled>
+            <input id="sq16-9" type="text" class="white-square" maxlength="1" required>
+            <input id="sq16-10" type="text" class="black-square" disabled>
+            <input id="sq16-11" type="text" class="black-square" disabled>
+            <input id="sq16-12" type="text" class="black-square" disabled>
+            <input id="sq16-13" type="text" class="white-square" maxlength="1" required>
+            <input id="sq16-14" type="text" class="black-square" disabled>
+            <input id="sq16-15" type="text" class="black-square" disabled>
+            <input id="sq16-16" type="text" class="black-square" disabled>
+            <input id="sq16-17" type="text" class="black-square" disabled>
+        </div>
+        <div class="level level-17">
+            <input id="sq17-1" type="text" class="black-square" disabled>
+            <input id="sq17-2" type="text" class="black-square" disabled>
+            <input id="sq17-3" type="text" class="black-square" disabled>
+            <input id="sq17-4" type="text" class="black-square" disabled>
+            <input id="sq17-5" type="text" class="black-square" disabled>
+            <input id="sq17-6" type="text" class="black-square" disabled>
+            <input id="sq17-7" type="text" class="white-square" maxlength="1" required>
+            <input id="sq17-8" type="text" class="black-square" disabled>
+            <input id="sq17-9" type="text" class="black-square" disabled>
+            <div class="cont">
+                <input id="sq17-10" type="text" class="white-square" maxlength="1" required>
+                <span class="num">19</span>
+            </div>
+            <input id="sq17-11" type="text" class="white-square" maxlength="1" required>
+            <input id="sq17-12" type="text" class="white-square" maxlength="1" required>
+            <input id="sq17-13" type="text" class="white-square" maxlength="1" required>
+            <input id="sq17-14" type="text" class="white-square" maxlength="1" required>
+            <input id="sq17-15" type="text" class="white-square" maxlength="1" required>
+            <input id="sq17-16" type="text" class="white-square" maxlength="1" required>
+            <input id="sq17-17" type="text" class="black-square" disabled>
+        </div>
+    </div>
+</section>
+<div id="hints" class="section-wrapper">
+    <button id="start-btn" class="btn-cust" role="button" style="display: none">
+        <div id="start-loader" class="loader" style="display: none"></div>
+        Start
+    </button>
+    <button id="next-btn" class="btn-cust" role="button" style="display: none" onclick="">
+        <div id="next-loader" class="loader" style="display: none"></div>
+        Next Adventure
+    </button>
+</div>
+
+
+<!--External Scripts-->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script type="text/javascript" src="scripts/data.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+<script src="scripts/bootstrap.min.js"></script>
+<script src="scripts/jquery-confirm.js"></script>
+<!--<script src="scripts/require.js"></script>-->
+<!--Main script-->
+<script src="scripts/script.js"></script>
+</body>
+</html>
