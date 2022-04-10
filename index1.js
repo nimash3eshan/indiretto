@@ -35,7 +35,7 @@ function readTestData(group, pass) {
       if (doc.data().groupname == group && doc.data().password == pass) {
           count=count+1;
           window.localStorage.setItem('group', group);
-        window.location.href = "index.html";
+        window.location.href = "Level 1.html";
       }
      
       console.log(`${doc.id} => ${doc.data()}`);

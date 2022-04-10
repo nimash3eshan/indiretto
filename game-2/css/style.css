@@ -1,9 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Atma:wght@300&family=Jockey+One&display=swap');
+
+body{
+  font-family: 'Atma', cursive;
+  background-image: url("../src/bg.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  height: auto;
+  
+}
+
+h1{
+  font-family: 'Jockey One', sans-serif;
+}
+
 /* Style the input fields */
 input {
     padding: 10px;
     width: 100%;
-    font-size: 17px;
-    font-family: Raleway;
+    font-size: 20px;
+    font-weight: bold;
+    font-family:'Atma', cursive;
     border: 1px solid #aaaaaa;
   }
   
@@ -34,15 +52,25 @@ input {
     opacity: 1;
   }
   
+  .container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+   }
+
   /* Mark the steps that are finished and valid: */
   .step.finish {
     background-color: #0609f1;
   }
 
+  
 
   #mainimage{
     border: 3px solid gray;
     border-radius: 6px;
+    box-shadow: 4px -4px 19px 13px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 4px -4px 19px 13px rgba(0,0,0,0.75);
+    -moz-box-shadow: 4px -4px 19px 13px rgba(0,0,0,0.75);
   }
 
   .img-magnifier-container {

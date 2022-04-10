@@ -19,7 +19,7 @@
               </div>
             </div>
         </div>
-        <div class="col-sm">
+        <div class="col-sm" style="background-color: rgba(245, 238, 197, 0.664);">
             <div class="row topSection">
                 <div class="col-8 col-sm-3 container">
                  <button class="button-81" id="Magnifier" onclick="switchMag()"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
@@ -27,17 +27,20 @@
                   </svg>
                    Magnifier</button>
                 </div>
-                <div class="col-4 col-sm-6 container">
+                <div class="col-4 col-sm-4 container" style="text-align: center;">
                     <div class="wrapper">
-                        <h1>Timer</h1>
+                        <h1>Time Left</h1>
                         <p><span id="mins">00</span>:<span id="seconds">00</span>:<span id="tens">00</span></p>
                         <!-- <button id="button-start">Start</button>
                         <button id="button-stop">Stop</button>
                         <button id="button-reset">Reset</button> -->
                     </div>
                 </div>
+                <div class="col-4 col-sm-4 container">
+                  <img src="./src/logo.png" alt="logo" width="150vw">
+              </div>
             
-            <div id="answers" class="container" onkeyup="saveAns();">
+            <div id="answers" class="containerx" onkeyup="saveAns();">
         
 
                 <!-- One "tab" for each step in the form: -->
