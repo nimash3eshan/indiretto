@@ -10,7 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;900&display=swap" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;1,300&display=swap"
         rel="stylesheet" />
-    <link href="/jquery-confirm.css" rel="stylesheet">    
+    <link href="/jquery-confirm.css" rel="stylesheet">
 
     <!-- </script> -->
     <meta charset="UTF-8">
@@ -22,6 +22,30 @@
             align-items: center;
         }
 
+        .style {
+            background-color: #cf245f;
+            background-image: linear-gradient(to bottom right, #fcd34d, #ef4444, #ec4899);
+            border: 0;
+            border-radius: 40px;
+            font-size: 15px;
+            /* 18px */
+            font-weight: 400;
+            line-height: 1.75rem;
+            padding: 1rem 1.25rem;
+            text-align: center;
+            touch-action: manipulation;
+        }
+
+        .glass {
+            -webkit-appearance: none;
+            background-color: rgba(0, 0, 0, 0.6);
+            border-radius: 40px;
+            box-shadow: 0 0px 20px 7px rgb(0 0 0 / 45%);
+            -webkit-box-shadow: 0 0px 20px 7px rgb(0 0 0 / 45%);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+        }
+
         table.center {
             margin-left: auto;
             margin-right: auto;
@@ -30,9 +54,15 @@
         }
 
         div.padding {
-            padding-top: 70px;
+            padding-top: 120px;
+            padding-bottom: 70px;
+            padding-left: 70px;
             z-index: -2;
 
+        }
+
+        .puzzle{
+            box-shadow: 0 0px 20px 7px rgb(0 0 0 / 100%);
         }
 
         p {
@@ -41,8 +71,14 @@
             margin-top: 0px;
         }
 
+        .colour{
+            color: rgb(224, 208, 208);;
+
+        }
+
         .center1 {
             margin: 0;
+            padding-left: 70px;
             position: absolute;
             top: 50dp;
             -ms-transform: translateY(50%);
@@ -52,9 +88,9 @@
     </style>
 </head>
 
-<body onkeydown="keyPressed(event)" background="/images/back.jpg">
+<body onkeydown="keyPressed(event)" background="/images/img2.jpg" style="height:  100%;">
 
-    <div class="stopwatch">
+    <div class="stopwatch"id="time" style="display:grid;">
         <h1><span class="gold">TIME</span> COUNTER</h1>
         <div class="circle">
             <span class="time" id="display">00:00:00</span>
@@ -64,12 +100,12 @@
     </div>
 
 </body>
-<div class="container" style="padding-top: 2%;">
-    <div class="alert alert-success" role="alert" id="g" style="display:none;">
+<div class="container" style="padding-top: 2%; ">
+    <div class="alert alert-success glass" role="alert" id="g" style="display:none;">
         <div class="container">
             <div class="row">
                 <div class="col">
-                    <h3 class="alert-heading">INSTRUCTIONS</h3>
+                    <h3 class="alert-heading colour" >INSTRUCTIONS</h3>
 
                 </div>
                 <div class="col">
@@ -82,37 +118,37 @@
         </div>
 
         <p>
-        <h5>The reference picture would be displayed on the left side of the screen. The participants can use it when
+        <h5 class="colour">The reference picture would be displayed on the left side of the screen. The participants can use it when
             solving the puzzle.</h5>
         </p>
         <p>
-        <h5>The picture puzzle consists of 16 tiles.</h5>
+        <h5 class="colour">The picture puzzle consists of 16 tiles.</h5>
         </p>
         <p>
-        <h5>One of the tiles is a space.</h5>
+        <h5 class="colour">One of the tiles is a space.</h5>
         </p>
         <p>
-        <h5>Arrow keys should be used when moving the tiles around.</h5>
-        </p>
-
-        <p>
-        <h5>If you want to move a tile down, you should use the down arrow key.</h5>
+        <h5 class="colour">Arrow keys should be used when moving the tiles around.</h5>
         </p>
 
+        <p>
+        <h5 class="colour">If you want to move a tile down, you should use the down arrow key.</h5>
+        </p>
+
 
         <p>
-        <h5>Likewise the left, right and the up arrow keys should be used to move a tile to the left, to the right
+        <h5 class="colour">Likewise the left, right and the up arrow keys should be used to move a tile to the left, to the right
             and upwards, respectively.</h5>
         </p>
         <p>
 
-        <h5>Likewise the left, right and the up arrow keys should be used to move a tile to the left, to the right
+        <h5 class="colour">Likewise the left, right and the up arrow keys should be used to move a tile to the left, to the right
             and upwards, respectively.</h5>
         </p>
 
         <hr>
         <p class="mb-0">
-        <h3>Good Luck!.</h3>
+        <h3 class="colour">Good Luck!.</h3>
 
         </p>
 
@@ -121,16 +157,17 @@
     <div class="row">
         <div class="row">
             <div class="center1">
-                <button type="button" class="btn btn-success" value="Show Div" onclick="showDiv()">Instructions</button>
+                <button type="button" class="btn btn-success style" value="Show Div"
+                    onclick="showDiv()">Instructions</button>
             </div>
 
         </div>
 
     </div>
-    <div class="row">
+    <div class="row puzzle">
         <div class="col-sm">
             <div class="padding">
-                <img  src="images/new.jpg" alt="image" width="70%">
+                <img src="images/new.jpg" alt="image" width="78%">
             </div>
 
         </div>
@@ -187,12 +224,12 @@
     }
     while (n < 15)
 
-    // l = [0, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1];
+    //l = [15, 0, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1];
 
     function drawPuzzle() {
         for (i = 0; i < 16; i++) {
 
-            document.getElementsByTagName('td')[i].innerHTML = '<img src ="' +"images/"+ l[i].toString() + '.JPG" width ="100%">';
+            document.getElementsByTagName('td')[i].innerHTML = '<img src ="' + "images/" + l[i].toString() + '.JPG" width ="100%">';
 
         }
         win();
@@ -259,19 +296,46 @@
         }
         if (a == 1) {
 
-            alert('You Won!\nTime - ' + timeToString(elapsedTime));
+           
+            nextPage();
+            closeTime();
             
             var group = window.localStorage.getItem('group');
-            addTestData(group, timeToString(elapsedTime));
-            window.location.href = "Level 4.html";
-            pause();
+            readTestDoc(group, timeToString(elapsedTime));
+            
+           
         }
+    }
+    function nextPage() {
+        // submit button click listener
+        $.confirm({
+                title: 'You Won!',
+                content: ' Click ok to move next level.',
+                type: 'red',
+                theme: 'supervan',
+                buttons: {
+                    Next:
+                    {
+                        btnClass: 'btn-red',
+                        action: function () {
+                            console.log("ok")
+                            window.location.href = "Level 4.html";
+                        }
+
+                    },
+
+
+                }
+            });
     }
     function showDiv() {
         document.getElementById('g').style.display = "block";
     }
     function closeDiv() {
         document.getElementById('g').style.display = "none";
+    }
+    function closeTime() {
+        document.getElementById('time').style.display = "none";
     }
 
 </script>

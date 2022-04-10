@@ -26,16 +26,33 @@ const db = firebase.firestore();
 // }
 
 // added test data to check the db connection
-function addTestData(geropname,time) {
-    db.collection("puzzle").add({
-        group: geropname,
-        timecount: time
+function addTestData(time, docId) {
+ 
+  db.collection("users").doc(docId).update({
+    picturePuzzleTime: time
+  })
+    .then(() => {
+      console.log("Document successfully updated!");
     })
-        .then((docRef) => {
-        console.log("Document written with ID: ", docRef.id);
-        })
-        .catch((error) => {
-        console.error("Error adding document: ", error);
-        });
+    .catch((error) => {
+      // The document probably doesn't exist.
+      console.error("Error updating document: ", error);
+    });
+ 
 }
 
+function readTestDoc(group, time) {
+
+
+  db.collection("users").get().then((querySnapshot) => {
+    querySnapshot.forEach((doc) => {
+      if (doc.data().groupname == group) {
+        addTestData(time, doc.id)
+      }
+
+      console.log(`${doc.id} => ${doc.data()}`);
+    });
+
+  });
+
+}
