@@ -389,9 +389,9 @@ function checkSolution(impt, userAns, impt1D) {
     // 19 across
     for (let i = 9; i < 16; i++) {
         if (impt[16][i] == userAns[16][i]) {
-            validAns[17] = true;
+            validAns[18] = true;
         } else {
-            validAns[17] = false;
+            validAns[18] = false;
             break;
         }
     }
