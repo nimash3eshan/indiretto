@@ -62,5 +62,6 @@ let quit = document.querySelector("#quit");
 //what happen when 'Quit' Button Will Click
 quit.addEventListener("click", () => {
     sendData();
+    window.location.replace("../leaderboard.html");
     
 });
