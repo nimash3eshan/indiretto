@@ -27,6 +27,7 @@ let teamName = "";
 
 // variable to contain the correct answers
 let validAns = [];
+let validAnsNum = 0;
 
 // variable for the solution document
 let solution = "solution";
@@ -47,6 +48,105 @@ disableInput();
 addSquare();
 // callback of the function to load the save data from db
 loadSave();
+
+// load save data
+async function loadSave() {
+    let docRef = db.collection("crossword_puzzle").doc(teamName);
+    let impt = []
+    await docRef.get().then((doc) => {
+        if (doc.exists) {
+            impt = doc.data().solution;
+
+            // function call to check the correct answers
+            if (doc.data().finished != null) {
+                disableInput();
+                showHints();
+                if (document.getElementById("submit-btn"))
+                    hideEle(document.getElementById("submit-btn"));
+                if (document.getElementById("save-btn"))
+                    hideEle(document.getElementById("save-btn"));
+                pauseTimer();
+                // print(doc.data().duration);
+                showNextBtn();
+                db.collection("crossword_puzzle").doc(solution).get().then((doc2) => {
+                    if (doc2.exists) {
+                        dispAns(doc2.data().solution);
+                        dispCorr(doc.data().validAns);
+                    } else {
+                        console.log("No such document!");
+                    }
+                }).catch((error) => {
+                    console.log("Error getting document:", error);
+                });
+
+            } else {
+                startTimer(doc.data().startTime);
+                hideEle(document.getElementById("start-btn"));
+                enableInput();
+                showHints();
+                addOnclickToBut();
+            }
+
+
+            if (doc.data().solution != null) {
+                populatePuzzle(convert1D(impt));
+            }
+
+
+        } else {
+            showEle(document.getElementById("start-btn"));
+            document.getElementById("start-btn").onclick = function () {
+                startTime = Date.now()
+
+                let docRef = db.collection("crossword_puzzle").doc(teamName);
+                docRef.get().then((doc2) => {
+                    if (doc2.exists) {
+                        startTimer(doc2.data().startTime);
+                        showEle(document.getElementById("start-loader"));
+                        enableInput();
+                        showHints();
+                        addOnclickToBut();
+                        hideEle(document.getElementById("start-loader"));
+                        hideEle(document.getElementById("start-btn"));
+                    } else {
+                        db.collection("crossword_puzzle").doc(teamName).set({
+                            startTime: startTime
+                        })
+                            .then((docRef) => {
+                                startTimer(startTime);
+                                showEle(document.getElementById("start-loader"));
+                                enableInput();
+                                showHints();
+                                addOnclickToBut();
+                                hideEle(document.getElementById("start-loader"));
+                                hideEle(document.getElementById("start-btn"));
+                            })
+                            .catch((error) => {
+                                console.error("Error adding document: ", error);
+                            });
+
+                    }
+                }).catch((error) => {
+                    console.log("Error getting document:", error);
+                    $.alert({
+                        title: 'Alert!',
+                        content: 'An error occurred. Please try again.',
+                    });
+                });
+
+
+            }
+
+        }
+    }).catch((error) => {
+        console.log("Error getting document:", error);
+        $.alert({
+            title: 'Alert!',
+            content: 'An error occurred. Please refresh the page or contact an admin.',
+        });
+        // alert("An error occurred. Please refresh the page or contact an admin.");
+    });
+}
 
 // adding square class to all boxes
 function addSquare() {
@@ -69,17 +169,17 @@ function addOnclickToBut() {
     document.getElementById("submit-btn").onclick = function () {
         $.confirm({
             title: 'Confirm Submission!',
-            content: 'Are you sure you want to submit?\nThis action cannot be undone. Click ok to submit.',
+            content: 'Are you sure you want to submit?',
             type: 'red',
             theme: 'supervan',
             buttons: {
-                confirm:
+                yes:
                     {
                         btnClass: 'btn-red',
                         action: function () {
                             console.log("ok")
-                            disableInput();
-                            pauseTimer();
+                            // disableInput();
+                            // pauseTimer();
                             showEle(document.getElementById("submit-loader"));
                             checkSubStatSub(db.collection("crossword_puzzle").doc(teamName));
                         }
@@ -115,14 +215,10 @@ function submit(cond) {
         })
             .then((docRef) => {
                 hideEle(document.getElementById("submit-loader"));
-                if (document.getElementById("submit-btn"))
-                    hideEle(document.getElementById("submit-btn"));
-                if (document.getElementById("save-btn"))
-                    hideEle(document.getElementById("save-btn"));
-                $.dialog({
-                    title: 'Submission Successful!',
-                    content: 'Your submission has been recorded',
-                });
+                // $.dialog({
+                //     title: 'Submission Successful!',
+                //     content: 'Your submission has been recorded',
+                // });
                 console.log("Document successfully written!");
             })
             .catch((error) => {
@@ -141,9 +237,17 @@ function submit(cond) {
                 checkSolution(convert2D(impt), answer(), impt);
 
                 //display the number of correct answers
-                duration = timeToString(elapsedTime)
                 dispCorr(validAns);
-                showNextBtn();
+
+                //check if all are correct
+                if (validAnsNum == 19) {
+                    if (document.getElementById("submit-btn"))
+                        hideEle(document.getElementById("submit-btn"));
+                    if (document.getElementById("save-btn"))
+                        hideEle(document.getElementById("save-btn"));
+                    disableInput();
+                    finish();
+                }
 
             } else {
                 console.log("No such document!");
@@ -165,7 +269,7 @@ function submit(cond) {
         hideEle(document.getElementById("submit-loader"));
         $.alert({
             title: 'Alert!',
-            content: '"You\'ve already submitted this puzzle. Multiple submissions are not allowed."',
+            content: '"You\'ve already completed this puzzle."',
         });
         // alert("You've already submitted this puzzle. Multiple submissions are not allowed.")
     }
@@ -196,7 +300,7 @@ function save(cond) {
         if (
             !($.alert({
                 title: 'Alert!',
-                content: '"You\'ve already submitted this puzzle. You cannot save your progress at this moment. \n\nRefresh the page to see your changes."',
+                content: '"You\'ve already completed this puzzle. You cannot save your progress at this moment. \n\nRefresh the page to see your changes."',
             }))) {
             window.location.reload();
         }
@@ -408,106 +512,6 @@ function checkSolution(impt, userAns, impt1D) {
 
 }
 
-// load save data
-async function loadSave() {
-    let docRef = db.collection("crossword_puzzle").doc(teamName);
-    let impt = []
-    await docRef.get().then((doc) => {
-        if (doc.exists) {
-            impt = doc.data().solution;
-
-            // function call to check the correct answers
-            if (doc.data().submitted != null) {
-                disableInput();
-                showHints();
-                if (document.getElementById("submit-btn"))
-                    hideEle(document.getElementById("submit-btn"));
-                if (document.getElementById("save-btn"))
-                    hideEle(document.getElementById("save-btn"));
-                pauseTimer();
-                duration = doc.data().duration;
-                print(doc.data().duration);
-                showNextBtn();
-                db.collection("crossword_puzzle").doc(solution).get().then((doc2) => {
-                    if (doc2.exists) {
-                        dispAns(doc2.data().solution);
-                        dispCorr(doc.data().validAns);
-                    } else {
-                        console.log("No such document!");
-                    }
-                }).catch((error) => {
-                    console.log("Error getting document:", error);
-                });
-
-            } else {
-                startTimer(doc.data().startTime);
-                hideEle(document.getElementById("start-btn"));
-                enableInput();
-                showHints();
-                addOnclickToBut();
-            }
-
-
-            if (doc.data().solution != null) {
-                populatePuzzle(convert1D(impt));
-            }
-
-
-        } else {
-            showEle(document.getElementById("start-btn"));
-            document.getElementById("start-btn").onclick = function () {
-                startTime = Date.now()
-
-                let docRef = db.collection("crossword_puzzle").doc(teamName);
-                docRef.get().then((doc2) => {
-                    if (doc2.exists) {
-                        startTimer(doc2.data().startTime);
-                        showEle(document.getElementById("start-loader"));
-                        enableInput();
-                        showHints();
-                        addOnclickToBut();
-                        hideEle(document.getElementById("start-loader"));
-                        hideEle(document.getElementById("start-btn"));
-                    } else {
-                        db.collection("crossword_puzzle").doc(teamName).set({
-                            startTime: startTime
-                        })
-                            .then((docRef) => {
-                                startTimer(startTime);
-                                showEle(document.getElementById("start-loader"));
-                                enableInput();
-                                showHints();
-                                addOnclickToBut();
-                                hideEle(document.getElementById("start-loader"));
-                                hideEle(document.getElementById("start-btn"));
-                            })
-                            .catch((error) => {
-                                console.error("Error adding document: ", error);
-                            });
-
-                    }
-                }).catch((error) => {
-                    console.log("Error getting document:", error);
-                    $.alert({
-                        title: 'Alert!',
-                        content: 'An error occurred. Please try again.',
-                    });
-                });
-
-
-            }
-
-        }
-    }).catch((error) => {
-        console.log("Error getting document:", error);
-        $.alert({
-            title: 'Alert!',
-            content: 'An error occurred. Please refresh the page or contact an admin.',
-        });
-        // alert("An error occurred. Please refresh the page or contact an admin.");
-    });
-}
-
 // function to populate hints and buttons
 function showHints() {
     // import data.js
@@ -536,40 +540,40 @@ function showHints() {
         "            <div class=\"row\">\n" +
         "                <div class=\"col-sm-6 \">\n" +
         "                    <h5>Across</h5><br>\n" +
-        "                    <p class=\"hints-p\"><span class=\"hint-num\">2 - </span>"+data[0].hint2+"\n" +
+        "                    <p class=\"hints-p\"><span class=\"hint-num\">2 - </span>" + data[0].hint2 + "\n" +
         "                        </p>\n" +
-        "                    <p class=\"hints-p\"><span class=\"hint-num\">6 - </span>"+data[0].hint6+"\n" +
+        "                    <p class=\"hints-p\"><span class=\"hint-num\">6 - </span>" + data[0].hint6 + "\n" +
         "                        </p>\n" +
-        "                    <p class=\"hints-p\"><span class=\"hint-num\">7 - </span>"+data[0].hint7+"\n" +
+        "                    <p class=\"hints-p\"><span class=\"hint-num\">7 - </span>" + data[0].hint7 + "\n" +
         "                        </p>\n" +
-        "                    <p class=\"hints-p\"><span class=\"hint-num\">9 - </span>"+data[0].hint9+"\n" +
+        "                    <p class=\"hints-p\"><span class=\"hint-num\">9 - </span>" + data[0].hint9 + "\n" +
         "                    </p>\n" +
-        "                    <p class=\"hints-p\"><span class=\"hint-num\">10 - </span>"+data[0].hint10+"\n" +
+        "                    <p class=\"hints-p\"><span class=\"hint-num\">10 - </span>" + data[0].hint10 + "\n" +
         "                        </p>\n" +
-        "                    <p class=\"hints-p\"><span class=\"hint-num\">15 - </span>"+data[0].hint15+"</p>\n" +
-        "                    <p class=\"hints-p\"><span class=\"hint-num\">16 - </span>"+data[0].hint16+"</p>\n" +
-        "                    <p class=\"hints-p\"><span class=\"hint-num\">17 - </span>"+data[0].hint17+"\n" +
+        "                    <p class=\"hints-p\"><span class=\"hint-num\">15 - </span>" + data[0].hint15 + "</p>\n" +
+        "                    <p class=\"hints-p\"><span class=\"hint-num\">16 - </span>" + data[0].hint16 + "</p>\n" +
+        "                    <p class=\"hints-p\"><span class=\"hint-num\">17 - </span>" + data[0].hint17 + "\n" +
         "                       </p>\n" +
-        "                    <p class=\"hints-p\"><span class=\"hint-num\">18 - </span>"+data[0].hint18+"\n" +
+        "                    <p class=\"hints-p\"><span class=\"hint-num\">18 - </span>" + data[0].hint18 + "\n" +
         "                    </p>\n" +
-        "                    <p class=\"hints-p\"><span class=\"hint-num\">19 - </span>"+data[0].hint19+"</p>\n" +
+        "                    <p class=\"hints-p\"><span class=\"hint-num\">19 - </span>" + data[0].hint19 + "</p>\n" +
         "                </div>\n" +
         "                <div class=\"col-sm-6 \">\n" +
         "                    <h5>Down</h5>\n" +
         "                    <br>\n" +
-        "                    <p class=\"hints-p\"><span class=\"hint-num\">1 - </span>"+data[0].hint1+"</p>\n" +
-        "                    <p class=\"hints-p\"><span class=\"hint-num\">3 - </span>"+data[0].hint3+"</p>\n" +
-        "                    <p class=\"hints-p\"><span class=\"hint-num\">4 - </span>"+data[0].hint4+"</p>\n" +
-        "                    <p class=\"hints-p\"><span class=\"hint-num\">5 - </span>"+data[0].hint5+"\n" +
+        "                    <p class=\"hints-p\"><span class=\"hint-num\">1 - </span>" + data[0].hint1 + "</p>\n" +
+        "                    <p class=\"hints-p\"><span class=\"hint-num\">3 - </span>" + data[0].hint3 + "</p>\n" +
+        "                    <p class=\"hints-p\"><span class=\"hint-num\">4 - </span>" + data[0].hint4 + "</p>\n" +
+        "                    <p class=\"hints-p\"><span class=\"hint-num\">5 - </span>" + data[0].hint5 + "\n" +
         "                        </p>\n" +
-        "                    <p class=\"hints-p\"><span class=\"hint-num\">8 - </span>"+data[0].hint8+"\n" +
+        "                    <p class=\"hints-p\"><span class=\"hint-num\">8 - </span>" + data[0].hint8 + "\n" +
         "                        </p>\n" +
-        "                    <p class=\"hints-p\"><span class=\"hint-num\">11 - </span>"+data[0].hint11+"</p>\n" +
-        "                    <p class=\"hints-p\"><span class=\"hint-num\">12 - </span>"+data[0].hint12+"\n" +
+        "                    <p class=\"hints-p\"><span class=\"hint-num\">11 - </span>" + data[0].hint11 + "</p>\n" +
+        "                    <p class=\"hints-p\"><span class=\"hint-num\">12 - </span>" + data[0].hint12 + "\n" +
         "                        </p>\n" +
-        "                    <p class=\"hints-p\"><span class=\"hint-num\">13 - </span>"+data[0].hint13+"\n" +
+        "                    <p class=\"hints-p\"><span class=\"hint-num\">13 - </span>" + data[0].hint13 + "\n" +
         "                        </p>\n" +
-        "                    <p class=\"hints-p\"><span class=\"hint-num\">14 - </span>"+data[0].hint14+"\n" +
+        "                    <p class=\"hints-p\"><span class=\"hint-num\">14 - </span>" + data[0].hint14 + "\n" +
         "                        </p>\n" +
         "                </div>\n" +
         "            </div>\n" +
@@ -599,25 +603,25 @@ function populatePuzzle(impt) {
 
 // function to check the submitted status for submit process
 function checkSubStatSub(docRef) {
-    let submitted = false;
+    let finished = false;
     docRef.get().then((doc) => {
         if (doc.exists) {
             console.log(doc.data());
-            if (doc.data().submitted != null) {
+            if (doc.data().finished != null) {
                 console.log("here2");
-                submitted = true;
-                submit(submitted);
+                finished = true;
+                submit(finished);
 
             } else {
                 console.log("here");
-                submitted = false;
-                submit(submitted);
+                finished = false;
+                submit(finished);
             }
 
         } else {
             console.log("No such document!");
-            submitted = false;
-            submit(submitted);
+            finished = false;
+            submit(finished);
 
         }
     }).catch((error) => {
@@ -634,10 +638,10 @@ function checkSubStatSav(docRef) {
     docRef.get().then((doc) => {
         if (doc.exists) {
             console.log(doc.data());
-            if (doc.data().submitted != null) {
-                save(doc.data().submitted);
+            if (doc.data().finished != null) {
+                save(doc.data().finished);
             } else {
-                save(doc.data().submitted);
+                save(doc.data().finished);
             }
 
         } else {
@@ -720,11 +724,11 @@ function dispAns(impt) {
 
 // function to display the correct number of answers
 function dispCorr(ans) {
-    let count = 0;
+    validAnsNum = 0;
     for (const x of ans) {
-        if (x) count++;
+        if (x) validAnsNum++;
     }
-    document.getElementById("correct").innerHTML = count + ' out of 19 correct in ' + duration;
+    document.getElementById("correct").innerHTML = validAnsNum + ' out of 19 ';
 }
 
 /*----functions for stopwatch-----*/
@@ -765,15 +769,15 @@ function timeToString(time) {
 }
 
 // Create function to modify innerHTML
-function print(txt) {
-    document.getElementById("display").innerHTML = txt;
-}
+// function print(txt) {
+//     document.getElementById("display").innerHTML = txt;
+// }
 
 // Create "start", "pause" and "reset" functions
 function startTimer(startTime) {
     timerInterval = setInterval(function printTime() {
         elapsedTime = Date.now() - startTime;
-        print(timeToString(elapsedTime));
+        // print(timeToString(elapsedTime));
     }, 100);
 }
 
@@ -782,3 +786,25 @@ function pauseTimer() {
     clearInterval(timerInterval);
 }
 
+// finish function
+function finish() {
+    db.collection("crossword_puzzle").doc(teamName).update({
+        finished: true
+    })
+        .then((docRef) => {
+            hideEle(document.getElementById("submit-loader"));
+            $.dialog({
+                title: 'Level Complete!',
+                content: 'You can continue to the next level',
+            });
+            console.log("Document successfully written!");
+            showNextBtn();
+            pauseTimer();
+        })
+        .catch((error) => {
+            hideEle(document.getElementById("submit-loader"));
+            console.error("Error adding document: ", error);
+            showEle(document.getElementById("submit-btn"));
+            showEle(document.getElementById("save-btn"));
+        });
+}
