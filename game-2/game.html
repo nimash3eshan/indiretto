@@ -1,195 +1,216 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <link rel="stylesheet" href="./css/style.css">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <link rel="stylesheet" href="./css/style.css">
 
-    <title>Game</title>
+  <title>Game</title>
 </head>
+
 <body>
-<section>
+  <section>
     <div class="row">
-        <div class="col-sm">
-            <div class="container">
-            <div class="img-magnifier-container">
-                <img src="./src/img.png" alt="img" id = "mainimage" width="700" height="600">
-              </div>
-            </div>
-        </div>
-        <div class="col-sm" style="background-color: rgba(245, 238, 197, 0.664);border-radius: 10px;">
-            <div class="row topSection">
-                <div class="col-8 col-sm-3 container">
-                 <button class="button-81" id="Magnifier" onclick="switchMag()"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-                  </svg>
-                   Magnifier</button>
-                </div>
-                <div class="col-4 col-sm-4 container" style="text-align: center;">
-                    <div class="wrapper">
-                        <h1>Time Left</h1>
-                        <p><span id="mins">00</span>:<span id="seconds">00</span>:<span id="tens">00</span></p>
-                        <!-- <button id="button-start">Start</button>
-                        <button id="button-stop">Stop</button>
-                        <button id="button-reset">Reset</button> -->
-                    </div>
-                </div>
-                <div class="col-4 col-sm-4 container">
-                  <img src="./src/logo.png" alt="logo" width="150vw">
-              </div>
-            
-            <div id="answers" class="containerx" onkeyup="saveAns();">
-        
-
-                <!-- One "tab" for each step in the form: -->
-                <div class="tab">
-                  <p><input placeholder="Answer No:1..." oninput="this.className = ''"></p>
-                  <p><input placeholder="Answer No:2..." oninput="this.className = ''"></p>
-                  <p><input placeholder="Answer No:3..." oninput="this.className = ''"></p>
-                  <p><input placeholder="Answer No:4..." oninput="this.className = ''"></p>
-                </div>
-
-                <div class="tab">
-                    <p><input placeholder="Answer No:5..." oninput="this.className = ''"></p>
-                    <p><input placeholder="Answer No:6..." oninput="this.className = ''"></p>
-                    <p><input placeholder="Answer No:7..." oninput="this.className = ''"></p>
-                    <p><input placeholder="Answer No:8..." oninput="this.className = ''"></p>
-                  </div>
-
-                  <div class="tab">
-                    <p><input placeholder="Answer No:9..." oninput="this.className = ''"></p>
-                    <p><input placeholder="Answer No:10..." oninput="this.className = ''"></p>
-                    <p><input placeholder="Answer No:11..." oninput="this.className = ''"></p>
-                    <p><input placeholder="Answer No:12..." oninput="this.className = ''"></p>
-                  </div>
-
-                  <div class="tab">
-                    <p><input placeholder="Answer No:13..." oninput="this.className = ''"></p>
-                    <p><input placeholder="Answer No:14..." oninput="this.className = ''"></p>
-                    <p><input placeholder="Answer No:15..." oninput="this.className = ''"></p>
-                    <p><input placeholder="Answer No:16..." oninput="this.className = ''"></p>
-                  </div>
-
-                  <div class="tab">
-                    <p><input placeholder="Answer No:17..." oninput="this.className = ''"></p>
-                    <p><input placeholder="Answer No:18..." oninput="this.className = ''"></p>
-                    <p><input placeholder="Answer No:19..." oninput="this.className = ''"></p>
-                    <p><input placeholder="Answer No:20..." oninput="this.className = ''"></p>
-                  </div>
-                
-              
-                
-                <div style="overflow:auto;">
-                  <div style="float:right;">
-                    <button class="crtBtn" type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
-                    <button class="crtBtn" type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
-                    <button class="crtBtn" type="button" id="submitBtn" style="display: none;">Submit</button>
-                  </div>
-                </div>
-                
-                <!-- Circles which indicates the steps of the form: -->
-                <div style="text-align:center;margin-top:40px;">
-                  <span class="step"></span>
-                  <span class="step"></span>
-                  <span class="step"></span>
-                  <span class="step"></span>
-                  <span class="step"></span>
-                </div>
-                
-                                <!-- Trigger/Open The Modal -->
-               
-                  <style>
-                    /* The Modal (background) */
-.modal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  left: 0;
-  top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-}
-
-/* Modal Content/Box */
-.modal-content {
-  background-color: #fefefe;
-  margin: 15% auto; /* 15% from the top and centered */
-  padding: 20px;
-  border: 1px solid #888;
-  width: 80%; /* Could be more or less, depending on screen size */
-}
-
-/* The Close Button */
-.close {
-  color: #aaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-  color: black;
-  text-decoration: none;
-  cursor: pointer;
-}
-                  </style>
-                <!-- The Modal -->
-                <div id="myModal" class="modal">
-
-                  <!-- Modal content -->
-                  <div class="modal-content">
-                    <span class="close">&times;</span>
-                    <p style="font-size: 25px; font-weight: bolder; text-align: center;">After submitting you can't change the answers and you can't play again!<br>
-                      Are you sure you want to submit?</p>
-
-                      <button class="crtBtn" onclick="submitAns()">Submit Now</button>
-                  </div>
-
-                </div>
-
-            </div> 
-                
+      <div class="col-sm">
+        <div class="container">
+          <div class="img-magnifier-container">
+            <img src="./src/img.png" alt="img" id="mainimage" width="700" height="600">
+          </div>
         </div>
       </div>
-    </section>
+      <div class="col-sm" style="background-color: rgba(245, 238, 197, 0.664);border-radius: 10px;">
+        <div class="row topSection">
+          <div class="col-8 col-sm-3 container">
+            <button class="button-81" id="Magnifier" onclick="switchMag()"><svg xmlns="http://www.w3.org/2000/svg"
+                width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                <path
+                  d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+              </svg>
+              Magnifier</button>
+          </div>
+          <div class="col-4 col-sm-4 container" style="text-align: center;">
+            <div class="wrapper">
+              <h1>Time Left</h1>
+              <p><span id="mins">00</span>:<span id="seconds">00</span>:<span id="tens">00</span></p>
+              <!-- <button id="button-start">Start</button>
+                        <button id="button-stop">Stop</button>
+                        <button id="button-reset">Reset</button> -->
+            </div>
+          </div>
+          <div class="col-4 col-sm-4 container">
+            <img src="./src/logo.png" alt="logo" width="150vw">
+          </div>
 
-    <script>
-      // Get the modal
-var modal = document.getElementById("myModal");
+          <div id="answers" class="containerx" onkeyup="saveAns();">
 
-// Get the button that opens the modal
-var btn = document.getElementById("submitBtn");
 
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
+            <!-- One "tab" for each step in the form: -->
+            <div class="tab">
+              <p><input placeholder="Answer No:1..." oninput="this.className = ''"></p>
+              <p><input placeholder="Answer No:2..." oninput="this.className = ''"></p>
+              <p><input placeholder="Answer No:3..." oninput="this.className = ''"></p>
+              <p><input placeholder="Answer No:4..." oninput="this.className = ''"></p>
+            </div>
 
-// When the user clicks on the button, open the modal
-btn.onclick = function() {
-  modal.style.display = "block";
-}
+            <div class="tab">
+              <p><input placeholder="Answer No:5..." oninput="this.className = ''"></p>
+              <p><input placeholder="Answer No:6..." oninput="this.className = ''"></p>
+              <p><input placeholder="Answer No:7..." oninput="this.className = ''"></p>
+              <p><input placeholder="Answer No:8..." oninput="this.className = ''"></p>
+            </div>
 
-// When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-  modal.style.display = "none";
-}
+            <div class="tab">
+              <p><input placeholder="Answer No:9..." oninput="this.className = ''"></p>
+              <p><input placeholder="Answer No:10..." oninput="this.className = ''"></p>
+              <p><input placeholder="Answer No:11..." oninput="this.className = ''"></p>
+              <p><input placeholder="Answer No:12..." oninput="this.className = ''"></p>
+            </div>
 
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
-}
-    </script>
-      
-     <script src="./js/script.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+            <div class="tab">
+              <p><input placeholder="Answer No:13..." oninput="this.className = ''"></p>
+              <p><input placeholder="Answer No:14..." oninput="this.className = ''"></p>
+              <p><input placeholder="Answer No:15..." oninput="this.className = ''"></p>
+              <p><input placeholder="Answer No:16..." oninput="this.className = ''"></p>
+            </div>
+
+            <div class="tab">
+              <p><input placeholder="Answer No:17..." oninput="this.className = ''"></p>
+              <p><input placeholder="Answer No:18..." oninput="this.className = ''"></p>
+              <p><input placeholder="Answer No:19..." oninput="this.className = ''"></p>
+              <p><input placeholder="Answer No:20..." oninput="this.className = ''"></p>
+            </div>
+
+
+
+            <div style="overflow:auto;">
+              <div style="float:right;">
+                <button class="crtBtn" type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
+                <button class="crtBtn" type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
+                <button class="crtBtn" type="button" id="submitBtn" style="display: none;">Submit</button>
+              </div>
+            </div>
+
+            <!-- Circles which indicates the steps of the form: -->
+            <div style="text-align:center;margin-top:40px;">
+              <span class="step"></span>
+              <span class="step"></span>
+              <span class="step"></span>
+              <span class="step"></span>
+              <span class="step"></span>
+            </div>
+
+            <!-- Trigger/Open The Modal -->
+
+            <style>
+              /* The Modal (background) */
+              .modal {
+                display: none;
+                /* Hidden by default */
+                position: fixed;
+                /* Stay in place */
+                z-index: 1;
+                /* Sit on top */
+                left: 0;
+                top: 0;
+                width: 100%;
+                /* Full width */
+                height: 100%;
+                /* Full height */
+                overflow: auto;
+                /* Enable scroll if needed */
+                background-color: rgb(0, 0, 0);
+                /* Fallback color */
+                background-color: rgba(0, 0, 0, 0.4);
+                /* Black w/ opacity */
+              }
+
+              /* Modal Content/Box */
+              .modal-content {
+                background-color: #fefefe;
+                margin: 15% auto;
+                /* 15% from the top and centered */
+                padding: 20px;
+                border: 1px solid #888;
+                width: 80%;
+                /* Could be more or less, depending on screen size */
+              }
+
+              /* The Close Button */
+              .close {
+                color: #aaa;
+                float: right;
+                font-size: 28px;
+                font-weight: bold;
+              }
+
+              .close:hover,
+              .close:focus {
+                color: black;
+                text-decoration: none;
+                cursor: pointer;
+              }
+            </style>
+            <!-- The Modal -->
+            <div id="myModal" class="modal">
+
+              <!-- Modal content -->
+              <div class="modal-content">
+                <span class="close">&times;</span>
+                <p style="font-size: 25px; font-weight: bolder; text-align: center;">After submitting you can't change
+                  the answers and you can't play again!<br>
+                  Are you sure you want to submit?</p>
+
+                <button class="crtBtn" onclick="submitAns()">Submit Now</button>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+  </section>
+
+  <script>
+    // Get the modal
+    var modal = document.getElementById("myModal");
+
+    // Get the button that opens the modal
+    var btn = document.getElementById("submitBtn");
+
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+
+    // When the user clicks on the button, open the modal
+    btn.onclick = function () {
+      modal.style.display = "block";
+    }
+
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function () {
+      modal.style.display = "none";
+    }
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function (event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    }
+  </script>
+
+  <script src="./js/script.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
+    integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
+    integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
+    crossorigin="anonymous"></script>
 
 </body>
+
 </html>

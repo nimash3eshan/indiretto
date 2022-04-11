@@ -53,7 +53,7 @@ for(let i = 0; i<correctAnswers.length; i++){
 
 finalMark = (1/timeDur * mark*10)+mark;
 //for 10 mins, range 0 - 1.0083 - 1 - 120
-console.log(mark);
+// console.log(mark);
 sendData();
 async function sendData(){
     var ref = collection(db,"game-2");
@@ -68,7 +68,8 @@ async function sendData(){
         }
     )
     .then(()=>{
-        window.location.replace("../Level 3.html"); 
+        // window.location.replace("../Level-3.html"); 
+        levelTwotoThree()
     })
     .catch((error)=>{
         alert("unsuccessfull, error:"+error);

@@ -10,7 +10,7 @@ const firebaseConfig = {
   measurementId: "G-NPN7DEXW95"
 };
 
-firebase.initializeApp(firebaseConfig);
+firebase.apps.length == 0 && firebase.initializeApp(firebaseConfig);
 
 
 // const app = initializeApp(firebaseConfig);

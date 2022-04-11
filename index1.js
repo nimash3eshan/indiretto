@@ -10,7 +10,7 @@ const firebaseConfig = {
   measurementId: "G-NPN7DEXW95"
 };
 
-firebase.initializeApp(firebaseConfig);
+firebase.apps.length == 0 && firebase.initializeApp(firebaseConfig);
 
 
 // const app = initializeApp(firebaseConfig);
@@ -35,10 +35,10 @@ function readTestData(group, pass) {
       if (doc.data().groupname == group && doc.data().password == pass) {
           count=count+1;
           window.localStorage.setItem('group', group);
-        window.location.href = "Level 1.html";
+        window.location.href = "Level-1.html";
       }
      
-      console.log(`${doc.id} => ${doc.data()}`);
+      // console.log(`${doc.id} => ${doc.data()}`);
     });
     if(count == 0){
       alert("Invalid Username or Password");

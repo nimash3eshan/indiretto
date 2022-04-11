@@ -109,11 +109,19 @@
     
 " onclick="levelTwo();">Submit</button>
   </div>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+  <script src="./checkAuth.js"></script>
 <script>
   function levelTwo(){
     var input = document.getElementById("levelCode").value;
-    if(input == "ind22rotaract") window.location.replace("./Level 2.html");
-    else alert("Incorrect code!!");
+    if(input == "ind22rotaract") {
+        levelOneToTwo();
+        // window.location.replace("./Level-2.html");
+    }else {
+        alert("Incorrect code!!");
+    }
+    
   }
   </script>
   

@@ -19,8 +19,8 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-const app = firebase.initializeApp(firebaseConfig);
-const db = app.firestore();
+firebase.apps.length == 0 && firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
 
 // variable for the team name
 let teamName = "";
@@ -583,7 +583,8 @@ function showHints() {
 function showNextBtn() {
     showEle(document.getElementById("next-btn"));
     document.getElementById("next-btn").onclick = function () {
-        window.location.replace("../Level 5.html");
+        // window.location.replace("../Level-5.html");
+        levelFourToFive()
     };
 }
 
