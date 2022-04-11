@@ -81,6 +81,10 @@ body[class*=jconfirm-no-scroll-] {
 .jconfirm .jconfirm-holder {
     max-height: 100%;
     padding: 50px 0;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 40%;
 }
 
 .jconfirm .jconfirm-box-container {
@@ -592,7 +596,7 @@ body[class*=jconfirm-no-scroll-] {
 
 .jconfirm.jconfirm-white .jconfirm-bg,
 .jconfirm.jconfirm-light .jconfirm-bg {
-    background-color: #444;
+    background-color: rgb(255, 255, 255,0);
     opacity: .2;
 }
 

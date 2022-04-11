@@ -41,7 +41,12 @@ function readTestData(group, pass) {
       console.log(`${doc.id} => ${doc.data()}`);
     });
     if(count == 0){
-      alert("Invalid Username or Password");
+      
+      $.alert({
+        title: 'Attention!',
+        content: 'Invalid Username or Password!',
+    });
+      //alert("Invalid Username or Password");
       
     }
   });
