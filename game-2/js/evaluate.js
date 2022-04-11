@@ -22,14 +22,14 @@
  const analytics = getAnalytics(app);
 
  import {
-     getFirestore, doc, getDoc, setDoc, collection, addDoc, updateDoc, deleteDoc, deleteField
+     getFirestore, doc, query, collection, addDoc, updateDoc, getDocs, deleteDoc, deleteField
  } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore.js";
 
  const db = getFirestore();
 
 var teamName = localStorage.getItem("group");
 var answers = JSON.parse(localStorage.getItem("my_answers")); //get them back
-var timeDur = localStorage.getItem("totalSecs");
+var timeDur = parseInt(localStorage.getItem("totalSecs"));
 var answers = [...new Set(answers)];
 
 
@@ -51,7 +51,7 @@ for(let i = 0; i<correctAnswers.length; i++){
    
 }
 
-finalMark = (1/timeDur * mark*10)+mark;
+finalMark = (3600/timeDur * mark*10)+mark;
 //for 10 mins, range 0 - 1.0083 - 1 - 120
 // console.log(mark);
 sendData();
@@ -68,8 +68,13 @@ async function sendData(){
         }
     )
     .then(()=>{
-        // window.location.replace("../Level-3.html"); 
-        levelTwotoThree()
+        updateDoc(doc(db, 'users', localStorage.getItem('teamId')), {
+            level2Score: finalMark
+        }).then(() => {
+            levelTwotoThree()
+        }).catch((error)=>{
+            alert("unsuccessfull, error:"+error);
+        })
     })
     .catch((error)=>{
         alert("unsuccessfull, error:"+error);

@@ -31,7 +31,6 @@ import {
 
 const db = getFirestore();
 
-localStorage.setItem("group","Nimash");
 var teamName = localStorage.getItem('group');
 
 //krish
@@ -49,6 +48,7 @@ async function sendData(){
         }
     )
     .then(()=>{
+        levelCompleted()
         alert("data added successfully");
     })
     .catch((error)=>{
@@ -62,6 +62,5 @@ let quit = document.querySelector("#quit");
 //what happen when 'Quit' Button Will Click
 quit.addEventListener("click", () => {
     sendData();
-    window.location.replace("../leaderboard.html");
     
 });
